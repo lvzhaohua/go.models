@@ -8,9 +8,9 @@ package novel_spider_interface
 
 import (
 	proto "github.com/golang/protobuf/proto"
+	_ "github.com/lvzhaohua/interface/v1/golang/common_interface"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	_ "gopkg.shmiao.net/interface/v3/golang/common_interface"
 	reflect "reflect"
 	sync "sync"
 )
