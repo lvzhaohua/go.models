@@ -41,3 +41,28 @@ func (UnimplementedDefaultRPCXServer) SearchChapter(context.Context, *SearchChap
 	return status.Errorf(codes.Unimplemented, "method SearchChapter not implemented")
 }
 func (UnimplementedDefaultRPCXServer) mustEmbedUnimplementedDefaultRPCXServer() {}
+
+func RegisterDefaultRPCXServer(s grpc.ServiceRegistrar, srv DefaultRPCXServer) {
+	s.RegisterService(&DefaultRPCX_ServiceDesc, srv)
+}
+
+// DefaultRPCX_ServiceDesc is the grpc.ServiceDesc for DefaultRPCX service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var DefaultRPCX_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "novel_spider.Default",
+	HandlerType: (*DefaultRPCXServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "SearchNovel",
+		},
+		{
+			MethodName: "SearchMenu",
+		},
+		{
+			MethodName: "SearchChapter",
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "novel_spider/service.proto",
+}

@@ -30,3 +30,22 @@ func (UnimplementedDefaultRPCXServer) Login(context.Context, *LoginRequest, *Log
 	return status.Errorf(codes.Unimplemented, "method Login not implemented")
 }
 func (UnimplementedDefaultRPCXServer) mustEmbedUnimplementedDefaultRPCXServer() {}
+
+func RegisterDefaultRPCXServer(s grpc.ServiceRegistrar, srv DefaultRPCXServer) {
+	s.RegisterService(&DefaultRPCX_ServiceDesc, srv)
+}
+
+// DefaultRPCX_ServiceDesc is the grpc.ServiceDesc for DefaultRPCX service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var DefaultRPCX_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "mall.Default",
+	HandlerType: (*DefaultRPCXServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Login",
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "mall/service.proto",
+}

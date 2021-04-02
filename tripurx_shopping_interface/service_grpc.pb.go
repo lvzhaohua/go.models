@@ -17,7 +17,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DefaultClient interface {
-	//  GetSpu 获取Spu
+	// GetSpu 获取Spu
 	// 临时路径 tripurx_shopping.Default/GetSpu
 	GetSpu(ctx context.Context, in *GetSpuRequest, opts ...grpc.CallOption) (*GetSpuReply, error)
 }
@@ -43,7 +43,7 @@ func (c *defaultClient) GetSpu(ctx context.Context, in *GetSpuRequest, opts ...g
 // All implementations must embed UnimplementedDefaultServer
 // for forward compatibility
 type DefaultServer interface {
-	//  GetSpu 获取Spu
+	// GetSpu 获取Spu
 	// 临时路径 tripurx_shopping.Default/GetSpu
 	GetSpu(context.Context, *GetSpuRequest) (*GetSpuReply, error)
 	mustEmbedUnimplementedDefaultServer()

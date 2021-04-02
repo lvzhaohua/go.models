@@ -18,7 +18,7 @@ const _ = grpc.SupportPackageIsVersion7
 // All implementations must embed UnimplementedDefaultRPCXServer
 // for forward compatibility
 type DefaultRPCXServer interface {
-	//  GetSpu 获取Spu
+	// GetSpu 获取Spu
 	// 临时路径 tripurx_shopping.Default/GetSpu
 	GetSpu(context.Context, *GetSpuRequest, *GetSpuReply) error
 	mustEmbedUnimplementedDefaultRPCXServer()
@@ -32,3 +32,22 @@ func (UnimplementedDefaultRPCXServer) GetSpu(context.Context, *GetSpuRequest, *G
 	return status.Errorf(codes.Unimplemented, "method GetSpu not implemented")
 }
 func (UnimplementedDefaultRPCXServer) mustEmbedUnimplementedDefaultRPCXServer() {}
+
+func RegisterDefaultRPCXServer(s grpc.ServiceRegistrar, srv DefaultRPCXServer) {
+	s.RegisterService(&DefaultRPCX_ServiceDesc, srv)
+}
+
+// DefaultRPCX_ServiceDesc is the grpc.ServiceDesc for DefaultRPCX service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var DefaultRPCX_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "tripurx_shopping.Default",
+	HandlerType: (*DefaultRPCXServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetSpu",
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "tripurx_shopping/service.proto",
+}
