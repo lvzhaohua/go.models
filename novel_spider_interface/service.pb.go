@@ -25,6 +25,7 @@ const (
 // of the legacy proto package is being used.
 const _ = proto.ProtoPackageIsVersion4
 
+// SearchNovelRequest 搜索小说请求
 type SearchNovelRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -73,6 +74,7 @@ func (x *SearchNovelRequest) GetNovelName() string {
 	return ""
 }
 
+// SearchNovelReply 搜索搜索返回
 type SearchNovelReply struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -121,6 +123,7 @@ func (x *SearchNovelReply) GetNovels() []*NovelInfo {
 	return nil
 }
 
+// SearchMenuRequest 搜索目录请求
 type SearchMenuRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -168,13 +171,16 @@ func (x *SearchMenuRequest) GetNovel() *NovelInfo {
 	return nil
 }
 
+// SearchMenuReply 搜索目录返回
 type SearchMenuReply struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// chapters 目录信息
 	Chapters []*NovelChapter `protobuf:"bytes,1,rep,name=chapters,proto3" json:"chapters,omitempty"`
-	Novel    *NovelInfo      `protobuf:"bytes,2,opt,name=novel,proto3" json:"novel,omitempty"`
+	// novel 小说信息
+	Novel *NovelInfo `protobuf:"bytes,2,opt,name=novel,proto3" json:"novel,omitempty"`
 }
 
 func (x *SearchMenuReply) Reset() {
@@ -223,13 +229,16 @@ func (x *SearchMenuReply) GetNovel() *NovelInfo {
 	return nil
 }
 
+// SearchChapterRequest 搜索章节请求
 type SearchChapterRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// chapter 目录信息
 	Chapter *NovelChapter `protobuf:"bytes,1,opt,name=chapter,proto3" json:"chapter,omitempty"`
-	Novel   *NovelInfo    `protobuf:"bytes,2,opt,name=novel,proto3" json:"novel,omitempty"`
+	// novel 小说信息
+	Novel *NovelInfo `protobuf:"bytes,2,opt,name=novel,proto3" json:"novel,omitempty"`
 }
 
 func (x *SearchChapterRequest) Reset() {
@@ -278,11 +287,13 @@ func (x *SearchChapterRequest) GetNovel() *NovelInfo {
 	return nil
 }
 
+// SearchChapterReply 搜索章节返回
 type SearchChapterReply struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// chapter 章节
 	Chapter *NovelChapter `protobuf:"bytes,1,opt,name=chapter,proto3" json:"chapter,omitempty"`
 }
 
