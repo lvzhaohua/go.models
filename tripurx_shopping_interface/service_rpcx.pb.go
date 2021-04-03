@@ -21,9 +21,9 @@ type DefaultRPCXServer interface {
 	// GetSpu 获取Spu
 	// 临时路径 tripurx_shopping.Default/GetSpu
 	GetSpu(context.Context, *GetSpuRequest, *GetSpuReply) error
-	// Login 登录
-	// 临时路径 tripurx_shopping.Default/Login
-	Login(context.Context, *LoginRequest, *LoginReply) error
+	// UpdateSpu 更新Spu
+	// 临时路径 tripurx_shopping.Default/UpdateSpu
+	UpdateSpu(context.Context, *UpdateSpuRequest, *UpdateSpuReply) error
 	mustEmbedUnimplementedDefaultRPCXServer()
 }
 
@@ -34,8 +34,8 @@ type UnimplementedDefaultRPCXServer struct {
 func (UnimplementedDefaultRPCXServer) GetSpu(context.Context, *GetSpuRequest, *GetSpuReply) error {
 	return status.Errorf(codes.Unimplemented, "method GetSpu not implemented")
 }
-func (UnimplementedDefaultRPCXServer) Login(context.Context, *LoginRequest, *LoginReply) error {
-	return status.Errorf(codes.Unimplemented, "method Login not implemented")
+func (UnimplementedDefaultRPCXServer) UpdateSpu(context.Context, *UpdateSpuRequest, *UpdateSpuReply) error {
+	return status.Errorf(codes.Unimplemented, "method UpdateSpu not implemented")
 }
 func (UnimplementedDefaultRPCXServer) mustEmbedUnimplementedDefaultRPCXServer() {}
 
@@ -54,7 +54,7 @@ var DefaultRPCX_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "GetSpu",
 		},
 		{
-			MethodName: "Login",
+			MethodName: "UpdateSpu",
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
