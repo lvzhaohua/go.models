@@ -15,7 +15,7 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 // DefaultRPCXServer is the server API for DefaultRPCX service.
-// All implementations must embed UnimplementedDefaultRPCXServer
+// All implementations should embed UnimplementedDefaultRPCXServer
 // for forward compatibility
 type DefaultRPCXServer interface {
 	// GetSpu 获取Spu
@@ -24,10 +24,9 @@ type DefaultRPCXServer interface {
 	// UpdateSpu 更新Spu
 	// 临时路径 tripurx_shopping.Default/UpdateSpu
 	UpdateSpu(context.Context, *UpdateSpuRequest, *UpdateSpuReply) error
-	mustEmbedUnimplementedDefaultRPCXServer()
 }
 
-// UnimplementedDefaultRPCXServer must be embedded to have forward compatible implementations.
+// UnimplementedDefaultRPCXServer should be embedded to have forward compatible implementations.
 type UnimplementedDefaultRPCXServer struct {
 }
 
@@ -37,7 +36,6 @@ func (UnimplementedDefaultRPCXServer) GetSpu(context.Context, *GetSpuRequest, *G
 func (UnimplementedDefaultRPCXServer) UpdateSpu(context.Context, *UpdateSpuRequest, *UpdateSpuReply) error {
 	return status.Errorf(codes.Unimplemented, "method UpdateSpu not implemented")
 }
-func (UnimplementedDefaultRPCXServer) mustEmbedUnimplementedDefaultRPCXServer() {}
 
 func RegisterDefaultRPCXServer(s grpc.ServiceRegistrar, srv DefaultRPCXServer) {
 	s.RegisterService(&DefaultRPCX_ServiceDesc, srv)

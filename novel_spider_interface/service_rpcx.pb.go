@@ -15,7 +15,7 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 // DefaultRPCXServer is the server API for DefaultRPCX service.
-// All implementations must embed UnimplementedDefaultRPCXServer
+// All implementations should embed UnimplementedDefaultRPCXServer
 // for forward compatibility
 type DefaultRPCXServer interface {
 	// SearchNovel 搜索小说
@@ -24,10 +24,9 @@ type DefaultRPCXServer interface {
 	SearchMenu(context.Context, *SearchMenuRequest, *SearchMenuReply) error
 	// SearchChapter 搜索章节
 	SearchChapter(context.Context, *SearchChapterRequest, *SearchChapterReply) error
-	mustEmbedUnimplementedDefaultRPCXServer()
 }
 
-// UnimplementedDefaultRPCXServer must be embedded to have forward compatible implementations.
+// UnimplementedDefaultRPCXServer should be embedded to have forward compatible implementations.
 type UnimplementedDefaultRPCXServer struct {
 }
 
@@ -40,7 +39,6 @@ func (UnimplementedDefaultRPCXServer) SearchMenu(context.Context, *SearchMenuReq
 func (UnimplementedDefaultRPCXServer) SearchChapter(context.Context, *SearchChapterRequest, *SearchChapterReply) error {
 	return status.Errorf(codes.Unimplemented, "method SearchChapter not implemented")
 }
-func (UnimplementedDefaultRPCXServer) mustEmbedUnimplementedDefaultRPCXServer() {}
 
 func RegisterDefaultRPCXServer(s grpc.ServiceRegistrar, srv DefaultRPCXServer) {
 	s.RegisterService(&DefaultRPCX_ServiceDesc, srv)
