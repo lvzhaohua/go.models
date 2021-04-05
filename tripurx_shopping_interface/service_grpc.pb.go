@@ -20,9 +20,6 @@ type DefaultClient interface {
 	// GetSpu 获取Spu
 	// 临时路径 tripurx_shopping.Default/GetSpu
 	GetSpu(ctx context.Context, in *GetSpuRequest, opts ...grpc.CallOption) (*GetSpuReply, error)
-	// UpdateSpu 更新Spu
-	// 临时路径 tripurx_shopping.Default/UpdateSpu
-	UpdateSpu(ctx context.Context, in *UpdateSpuRequest, opts ...grpc.CallOption) (*UpdateSpuReply, error)
 }
 
 type defaultClient struct {
@@ -42,15 +39,6 @@ func (c *defaultClient) GetSpu(ctx context.Context, in *GetSpuRequest, opts ...g
 	return out, nil
 }
 
-func (c *defaultClient) UpdateSpu(ctx context.Context, in *UpdateSpuRequest, opts ...grpc.CallOption) (*UpdateSpuReply, error) {
-	out := new(UpdateSpuReply)
-	err := c.cc.Invoke(ctx, "/tripurx_shopping.Default/UpdateSpu", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // DefaultServer is the server API for Default service.
 // All implementations must embed UnimplementedDefaultServer
 // for forward compatibility
@@ -58,9 +46,6 @@ type DefaultServer interface {
 	// GetSpu 获取Spu
 	// 临时路径 tripurx_shopping.Default/GetSpu
 	GetSpu(context.Context, *GetSpuRequest) (*GetSpuReply, error)
-	// UpdateSpu 更新Spu
-	// 临时路径 tripurx_shopping.Default/UpdateSpu
-	UpdateSpu(context.Context, *UpdateSpuRequest) (*UpdateSpuReply, error)
 	mustEmbedUnimplementedDefaultServer()
 }
 
@@ -70,9 +55,6 @@ type UnimplementedDefaultServer struct {
 
 func (UnimplementedDefaultServer) GetSpu(context.Context, *GetSpuRequest) (*GetSpuReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSpu not implemented")
-}
-func (UnimplementedDefaultServer) UpdateSpu(context.Context, *UpdateSpuRequest) (*UpdateSpuReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateSpu not implemented")
 }
 func (UnimplementedDefaultServer) mustEmbedUnimplementedDefaultServer() {}
 
@@ -105,24 +87,6 @@ func _Default_GetSpu_Handler(srv interface{}, ctx context.Context, dec func(inte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Default_UpdateSpu_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateSpuRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DefaultServer).UpdateSpu(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/tripurx_shopping.Default/UpdateSpu",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DefaultServer).UpdateSpu(ctx, req.(*UpdateSpuRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 var _Default_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "tripurx_shopping.Default",
 	HandlerType: (*DefaultServer)(nil),
@@ -130,10 +94,6 @@ var _Default_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetSpu",
 			Handler:    _Default_GetSpu_Handler,
-		},
-		{
-			MethodName: "UpdateSpu",
-			Handler:    _Default_UpdateSpu_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

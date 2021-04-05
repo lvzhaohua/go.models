@@ -21,9 +21,6 @@ type DefaultRPCXServer interface {
 	// GetSpu 获取Spu
 	// 临时路径 tripurx_shopping.Default/GetSpu
 	GetSpu(context.Context, *GetSpuRequest, *GetSpuReply) error
-	// UpdateSpu 更新Spu
-	// 临时路径 tripurx_shopping.Default/UpdateSpu
-	UpdateSpu(context.Context, *UpdateSpuRequest, *UpdateSpuReply) error
 }
 
 // UnimplementedDefaultRPCXServer should be embedded to have forward compatible implementations.
@@ -32,9 +29,6 @@ type UnimplementedDefaultRPCXServer struct {
 
 func (UnimplementedDefaultRPCXServer) GetSpu(context.Context, *GetSpuRequest, *GetSpuReply) error {
 	return status.Errorf(codes.Unimplemented, "method GetSpu not implemented")
-}
-func (UnimplementedDefaultRPCXServer) UpdateSpu(context.Context, *UpdateSpuRequest, *UpdateSpuReply) error {
-	return status.Errorf(codes.Unimplemented, "method UpdateSpu not implemented")
 }
 
 func RegisterDefaultRPCXServer(s grpc.ServiceRegistrar, srv DefaultRPCXServer) {
@@ -50,9 +44,6 @@ var DefaultRPCX_ServiceDesc = grpc.ServiceDesc{
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "GetSpu",
-		},
-		{
-			MethodName: "UpdateSpu",
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
